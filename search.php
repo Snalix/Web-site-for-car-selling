@@ -1,11 +1,20 @@
 <?php
-require 'nav.php';
 $dsn = 'mysql:host=localhost;dbname=cars';
 $pdo = new PDO($dsn, 'root');
-$query = $pdo->query('SELECT * FROM cars ORDER BY model ASC; ');
-while($row = $query->fetch(PDO::FETCH_OBJ)) {
-    echo '
- <main role="main">
+
+if(isset($_POST['search']))
+
+$keyword = $_POST['keyword'];
+
+$sql = 'SELECT * FROM cars WHERE model LIKE :keyword';
+$query = $pdo->prepare($sql);
+$query->bindValue(':keyword','%'.$keyword.'%');
+$query->execute();
+if(!$query->rowCount() == 0) {
+    while ($row = $query->fetch(PDO::FETCH_OBJ)) {
+        require_once 'nav.php';
+        echo'
+    <main role="main">
         <div class="album py-5 bg-light">
             <div class="container">
                 <div class="row">
@@ -15,16 +24,18 @@ while($row = $query->fetch(PDO::FETCH_OBJ)) {
                             <div class="card-body">
                                 <p class="card-text">Model: '.$row->model.'</p>
                                 <p class="card-text">Price: '.$row->price.'</p>
+                                <p class="card-text">Power: '.$row->power.'</p>
+                                <p class="card-text">Category: '.$row->category.'</p>
+                                <p class="card-text">Color: '.$row->color.'</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary stretched-link" href="view.php?id='.$row->id.'">View</a>
-                                        <a class="btn btn-primary stretched-link" href="updateHTML.php?id='.$row->id.'">Update</a>
-                                    </div>
-                                   
+                                        <p><a class="btn btn-primary stretched-link" href="home.php">Back</a></p>
                                 </div>
                             </div>
                         </div>
-    </main>
-      ';
+    </main>';
+    }
 }
-?>
+else
+    {
+       require_once 'notFound.php';
+    }

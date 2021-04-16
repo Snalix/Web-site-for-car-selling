@@ -12,5 +12,3 @@
  $sql = 'INSERT INTO cars(model,color,power,category,picture,price) VALUES(:model,:color,:power,:category,:picture,:price)';
  $query = $pdo->prepare($sql);
  $query->execute(['model'=>$model,'color'=>$color,'power'=>$power,'category'=>$category,'picture'=>$picture,'price'=>$price]);
-
- require_once 'index.php';

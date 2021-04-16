@@ -5,32 +5,27 @@ require_once 'nav.php';
 <html>
 <head>
     <title>Registration system PHP and MySQL</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div class="header">
-    <h2>Register</h2>
+    <h2 text align="center">Register</h2>
 </div>
 
 <form method="post" action="registration.php">
-    <div class="input-group">
-        <label>Username</label>
-        <input type="text" name="username" value="">
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-md-6">
+            <div class="card bg-dark p-3 text-center text-white">
+                <div> <img src="https://i.imgur.com/FTZY7dr.png" width="100"> </div>
+                <h1>Welcome to Cars4You</h1> <span>We always have a cup of hot tea <br> and warm blanket</span>
+                <div class="p-2 px-5"> <input type="text" name="username" class="form-control" placeholder="User name"><br>
+                    <input type="email" name="email" class="form-control" placeholder="User email"><br>
+                    <input type="password" name="password" class="form-control" placeholder="Password"><br>
+                    <button type="submit" name="reg_user" class="btn btn-danger w-100 signup-button">Register</button> </div>
+            </div>
+        </div>
     </div>
-    <div class="input-group">
-        <label>Email</label>
-        <input type="email" name="email" value="">
-    </div>
-    <div class="input-group">
-        <label>Password</label>
-        <input type="password" name="password">
-    </div>
-    <div class="input-group">
-        <button type="submit" class="btn" name="reg_user">Register</button>
-    </div>
-    <p>
-        Already a member? <a href="login.php">Sign in</a>
-    </p>
+</div>
 </form>
 </body>
 </html>
